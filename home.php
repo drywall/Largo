@@ -37,11 +37,10 @@ $tags = of_get_option ('tag_display');
 		$args = array(
 			'paged'			=> $paged,
 			'post_status'	=> 'publish',
-			'posts_per_page'=> 10,
-			'post__not_in' 	=> $ids
+			'posts_per_page'=> of_get_option('num_posts_home', 10),
+			'post__not_in' 	=> $ids,
+			'ignore_sticky_posts' => true
 			);
-		if ( of_get_option('num_posts_home') )
-			$args['posts_per_page'] = of_get_option('num_posts_home');
 		if ( of_get_option('cats_home') )
 			$args['cat'] = of_get_option('cats_home');
 		$query = new WP_Query( $args );
